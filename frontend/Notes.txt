@@ -1,0 +1,3 @@
+Command to create the files
+
+   ---> pnpm create vite@latest Frontend -- --template react-ts
