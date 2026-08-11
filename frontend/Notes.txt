@@ -1,3 +1,21 @@
 Command to create the files
 
    ---> pnpm create vite@latest Frontend -- --template react-ts
+
+   Configure Tailwind css
+
+   1 --- pnpm install tailwindcss @tailwindcss/vite
+   2 --- vite.config.ts
+
+                  import { defineConfig } from 'vite'
+                  import tailwindcss from '@tailwindcss/vite'
+                  export default defineConfig({
+                  plugins: [
+                     tailwindcss(),
+                  ],
+                  })
+
+
+   3 --- CSS
+
+            @import "tailwindcss";
