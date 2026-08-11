@@ -19,3 +19,7 @@ Command to create the files
    3 --- CSS
 
             @import "tailwindcss";
+
+
+Install PWA 
+      pnpm add vite-plugin-pwa workbox-window -D
