@@ -1,5 +1,6 @@
 // src/pages/Landing.tsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/landing/Navbar';
 import { Hero } from '../components/landing/Hero';
 import { ProblemSolution } from '../components/landing/ProblemSolution';
@@ -19,15 +20,38 @@ export const Landing: React.FC<LandingProps> = ({
   onGetStartedClick,
   onSelectPlan,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (onLoginClick) onLoginClick();
+    else navigate('/login');
+  };
+
+  const handleGetStarted = () => {
+    if (onGetStartedClick) {
+      onGetStartedClick();
+    } else {
+      navigate('/demo');
+    }
+  };
+
+  const handlePlanSelection = (planName: string) => {
+    if (onSelectPlan) {
+      onSelectPlan(planName);
+    } else {
+      navigate(`/login?plan=${encodeURIComponent(planName)}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#030812] text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
-      <Navbar onLoginClick={onLoginClick} onGetStartedClick={onGetStartedClick} />
+      <Navbar onLoginClick={handleLogin} onGetStartedClick={handleGetStarted} />
       <main>
-        <Hero onGetStartedClick={onGetStartedClick} />
+        <Hero onGetStartedClick={handleGetStarted} />
         <ProblemSolution />
         <HowItWorks />
         <Features />
-        <Pricing onSelectPlan={onSelectPlan} />
+        <Pricing onSelectPlan={handlePlanSelection} />
       </main>
       <Footer />
     </div>
